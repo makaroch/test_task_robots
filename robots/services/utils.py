@@ -22,3 +22,7 @@ def save_new_robot(robot: RobotDDO) -> None:
         version=robot.version,
         created=robot.created
     )
+
+
+def get_robots_by_serial(serial: str) -> list[Robot]:
+    return Robot.objects.filter(serial=serial)
