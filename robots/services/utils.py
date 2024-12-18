@@ -28,7 +28,6 @@ def save_new_robot(robot: RobotDDO) -> None:
         created=robot.created
     )
 
-
 def get_report_period(period: int = 7) -> tuple[datetime, datetime]:
     end_date = timezone.now()
     start_date = end_date - timedelta(days=period)
@@ -65,3 +64,6 @@ def create_file_response(path_to_file: str, start_date: datetime, end_date: date
     response['Content-Disposition'] = (f'attachment; filename="robots report {start_date.strftime("%d.%m.%Y")}'
                                        f'-{end_date.strftime("%d.%m.%Y")}.xlsx"')
     return response
+
+def get_robots_by_serial(serial: str) -> list[Robot]:
+    return Robot.objects.filter(serial=serial)
